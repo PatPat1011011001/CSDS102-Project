@@ -5,7 +5,7 @@ import tkinter as tk
 
 main = tkinter.Tk()
 main.title("CSDS102-Project")
-main.geometry('350x200+550+250')
+main.geometry('850x550')
 
 #Function
 def test():
