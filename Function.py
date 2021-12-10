@@ -1,5 +1,16 @@
 from tabulate import tabulate
+import os
 
-table = [['First Name', 'Last Name', 'Age'], ['John', 'Smith', 39], ['Mary', 'Jane', 25], ['Jennifer', 'Doe', 28]]
 
-print(tabulate(table))
+
+#Input User
+
+
+
+
+#Output Print
+ds = "\u03B4"
+table = [['x', 'P(x)', 'x\u00b2', 'x\u00b2*P(x)'],  [ds, 'Jane', 25, 56], ['Jennifer', 'Doe', 28, 45]]
+
+print(tabulate(table, headers='firstrow', tablefmt='grid'))
+os.system('cls') #Terminal Clear
