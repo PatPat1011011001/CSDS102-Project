@@ -1,12 +1,5 @@
-def myVariance():
-    N=int(input())
-    Q=[float(x) for x in input() .split()]
-    
-    m=sum(Q)/N
-    s=sum((Q-m)**2)
-    print(s)
+from tabulate import tabulate
 
+table = [['First Name', 'Last Name', 'Age'], ['John', 'Smith', 39], ['Mary', 'Jane', 25], ['Jennifer', 'Doe', 28]]
 
-
-
-myVariance()
+print(tabulate(table))
