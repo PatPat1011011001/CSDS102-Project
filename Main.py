@@ -1,6 +1,6 @@
 import tkinter
-from tkinter import font
-from tkinter.constants import COMMAND, INSERT
+from tkinter import Frame, font
+from tkinter.constants import COMMAND, INSERT, LEFT, RIGHT, TOP
 from typing import Text
 import tkinter as tk
 from tabulate import tabulate
@@ -55,17 +55,20 @@ def Result_Gui():
     Btn_Back = tkinter.Button(Result, text="Back", command = Result.destroy).pack()
 
 
+#FRAME
+frame = Frame(main).pack()
+Leftframe = Frame(main).pack(side=LEFT)
+Rightframe = Frame(main).pack(side=RIGHT)
 
-
-Title_Main = tkinter.Label(main, text="Calculate of Mean, Variance, and Standard Deviation", font=("Time New Roman", 16)).place(x=160, y=0)
+Title_Main = tkinter.Label(frame, text="Calculate of Mean, Variance, and Standard Deviation", font=("Time New Roman", 16)).pack(TOP)
 
 #input Value X and Title
-Title_Main = tkinter.Label(main, text="X", font=("Time New Roman", 16)).place(x=190, y=50)
-txtbox_ValueX1=tk.Entry(main, width=10).place(x=150, y=100)
-txtbox_ValueX2=tk.Entry(main, width=10).place(x=150, y=200)
-txtbox_ValueX3=tk.Entry(main, width=10).place(x=150, y=300)
-txtbox_ValueX4=tk.Entry(main, width=10).place(x=150, y=400)
-txtbox_ValueX5=tk.Entry(main, width=10).place(x=150, y=500)
+Title_Main = tkinter.Label(Leftframe, text="X", font=("Time New Roman", 16)).pack(side=LEFT)
+txtbox_ValueX1=tk.Entry(Leftframe, width=10).pack(side=LEFT)
+txtbox_ValueX2=tk.Entry(Leftframe, width=10).pack(side=LEFT)
+txtbox_ValueX3=tk.Entry(Leftframe, width=10).pack(side=LEFT)
+txtbox_ValueX4=tk.Entry(Leftframe, width=10).pack(side=LEFT)
+txtbox_ValueX5=tk.Entry(Leftframe, width=10).pack(side=LEFT)
 
     #Value of X Input
 ValueXInp_2 = 0
