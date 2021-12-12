@@ -90,8 +90,7 @@ def Result_Gui():
     Variance_xPxT = xPx_Out_1 + xPx_Out_2 + xPx_Out_3 + xPx_Out_4
     Variance_x2pxT =  x2Px_1 + x2Px_2 + x2Px_3 + x2Px_4
     Variance_Out = Variance_x2pxT - (Variance_xPxT**2)
-    #STD_In = 
-    #STD_Out = math.sqrt(int(Variance_Out))
+    STD_Out = math.sqrt(int(Variance_Out))
 
     #Table with TIBULATE 
     table = [['x', 'P(x)', 'xP(x)', 'x\u00b2', 'x\u00b2P(x)'],  [txtbox_ValueX1.get("1.0","end-1c"), txtbox_ValuePx1.get("1.0","end-1c"), xPx_Out_1, x2_1, x2Px_1 ], [txtbox_ValueX2.get("1.0","end-1c"), txtbox_ValuePx2.get("1.0","end-1c"),  xPx_Out_2, x2_2, x2Px_2], [txtbox_ValueX3.get("1.0","end-1c"), txtbox_ValuePx3.get("1.0","end-1c"),  xPx_Out_3, x2_3, x2Px_3], [txtbox_ValueX4.get("1.0","end-1c"), txtbox_ValuePx4.get("1.0","end-1c"), xPx_Out_4, x2_4, x2Px_4],[" ", Px_Total, xPx_Total, " ", x2px_Total]]
@@ -105,7 +104,7 @@ def Result_Gui():
     txtbox_Result.insert(INSERT, print)
     txtbox_Result_2.insert(INSERT, Mean_Out)
     txtbox_Result_2.insert(INSERT, Variance_Out)
-    #txtbox_Result_2.insert(INSERT, STD_Out)
+    txtbox_Result_2.insert(INSERT, STD_Out)
     txtbox_Result.configure(state='disabled', font=("courier", 12)) #Disable TextBox from Editing and Read only
     Btn_Back = tkinter.Button(Result, text="Back", command = Result.destroy).pack()
 
