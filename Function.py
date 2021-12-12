@@ -1,9 +1,26 @@
-from tkinter import *
-root = Tk()
-
-root.geometry('250x200+250+200')
-Label(root, text="Position 1 : x=0, y=0", bg="#FFFF00", fg="white").place(x=5, y=0)
-Label(root, text="Position 2 : x=50, y=40", bg="#3300CC", fg="white").place(x=50, y=40)
-Label(root, text="Position 3 : x=75, y=80", bg="#FF0099", fg="white").place(x=75, y=80)
-
-root.mainloop()
+from tkinter import *  
+  
+top = Tk()  
+top.geometry("140x100")  
+frame = Frame(top)  
+frame.pack()  
+  
+leftframe = Frame(top)  
+leftframe.pack(side = LEFT)  
+  
+rightframe = Frame(top)  
+rightframe.pack(side = RIGHT)  
+  
+btn1 = Button(frame, text="Submit", fg="red",activebackground = "red")  
+btn1.pack(side = LEFT)  
+  
+btn2 = Button(frame, text="Remove", fg="brown", activebackground = "brown")  
+btn2.pack(side = RIGHT)  
+  
+btn3 = Button(rightframe, text="Add", fg="blue", activebackground = "blue")  
+btn3.pack(side = LEFT)  
+  
+btn4 = Button(leftframe, text="Modify", fg="black", activebackground = "white")  
+btn4.pack(side = RIGHT)  
+  
+top.mainloop()  
