@@ -22,10 +22,12 @@ table = [['x', 'P(x)', 'x\u00b2', 'x\u00b2*P(x)'],  [ds, 'Jane', 25, 56], ['Jenn
 
 #Function UI
 
-Title_Main = tkinter.Label(main, text= table)
-Title_Main.configure(font=("courier", 14))
+txtbox_Result=tk.Text(main, height=20, width=50)
+print = tabulate(table, headers='firstrow', tablefmt='grid')
+txtbox_Result.insert(INSERT, print)
+txtbox_Result.pack()
 
-Title_Main.pack()
+
 
 #Closing 
 
