@@ -6,6 +6,7 @@ import tkinter as tk
 from tabulate import tabulate
 import os
 import math
+import numpy as np #pip install numpy
 
 #Main Menu Tkinter GUI
 main = tkinter.Tk()
@@ -67,19 +68,31 @@ def Result_Gui():
 
     #Math_Process
     xPx_Out_1 = float(txtbox_ValueX1.get("1.0","end-1c")) * float(txtbox_ValuePx1.get("1.0","end-1c"))
-    xPx_Out_2 = float(txtbox_ValueX2.get("1.0","end-1c")) * float(txtbox_ValuePx2.get("1.0","end-1c"))
+    xPx_Out_2 = float(txtbox_ValueX2.get("1.0","end-1c")) * float(txtbox_ValuePx2.get("1.0","end-1c")) 
     xPx_Out_3 = float(txtbox_ValueX3.get("1.0","end-1c")) * float(txtbox_ValuePx3.get("1.0","end-1c"))
     xPx_Out_4 = float(txtbox_ValueX4.get("1.0","end-1c")) * float(txtbox_ValuePx4.get("1.0","end-1c"))
+    
+    xpx_out_1_round = round(xPx_Out_1, 2)
+    xpx_out_2_round = round(xPx_Out_2, 2)
+    xpx_out_3_round = round(xPx_Out_3, 2)
+    xpx_out_4_round = round(xPx_Out_4, 2)
+
 
     x2_1  = float(txtbox_ValueX1.get("1.0","end-1c")) * float(txtbox_ValueX1.get("1.0","end-1c"))
     x2_2  = float(txtbox_ValueX2.get("1.0","end-1c")) * float(txtbox_ValueX2.get("1.0","end-1c"))
     x2_3  = float(txtbox_ValueX3.get("1.0","end-1c")) * float(txtbox_ValueX3.get("1.0","end-1c"))
     x2_4  = float(txtbox_ValueX4.get("1.0","end-1c")) * float(txtbox_ValueX4.get("1.0","end-1c"))
-
+    
     x2Px_1 = x2_1 * float(txtbox_ValuePx1.get("1.0","end-1c"))
     x2Px_2 = x2_2 * float(txtbox_ValuePx2.get("1.0","end-1c"))
     x2Px_3 = x2_3 * float(txtbox_ValuePx3.get("1.0","end-1c"))
     x2Px_4 = x2_4 * float(txtbox_ValuePx4.get("1.0","end-1c"))
+    
+    x2Px_1_round = round(x2Px_1, 2)
+    x2Px_2_round = round(x2Px_2, 2)
+    x2Px_3_round = round(x2Px_3, 2)
+    x2Px_4_round = round(x2Px_4, 2)
+    
 
     Px_Total = float(txtbox_ValuePx1.get("1.0","end-1c")) + float(txtbox_ValuePx2.get("1.0","end-1c")) + float(txtbox_ValuePx3.get("1.0","end-1c")) + float(txtbox_ValuePx4.get("1.0","end-1c"))
     xPx_Total = '\u03A3[xP(x)] = ', float(xPx_Out_1) + float(xPx_Out_2) + float(xPx_Out_3) + float(xPx_Out_4)
@@ -89,25 +102,27 @@ def Result_Gui():
     Mean_Out ="Mean: ", xPx_Total
     Variance_xPxT = xPx_Out_1 + xPx_Out_2 + xPx_Out_3 + xPx_Out_4
     Variance_x2pxT =  x2Px_1 + x2Px_2 + x2Px_3 + x2Px_4
-    Variance_Out ="Variance: ", Variance_x2pxT - (Variance_xPxT**2)
-    STD_inp = math.sqrt(float(Variance_Out))
-    STD_out = "STD: ", str(STD_inp)
+    Variance_Out = Variance_x2pxT - (Variance_xPxT**2)
+    Variance_Round = round(Variance_Out, 2)
+    STD_inp = np.sqrt(Variance_Out)
+    STD_round = round(STD_inp)
+    STD_out = "STD: ", str(STD_round)
 
     #Table with TIBULATE 
-    table = [['x', 'P(x)', 'xP(x)', 'x\u00b2', 'x\u00b2P(x)'],  [txtbox_ValueX1.get("1.0","end-1c"), txtbox_ValuePx1.get("1.0","end-1c"), xPx_Out_1, x2_1, x2Px_1 ], [txtbox_ValueX2.get("1.0","end-1c"), txtbox_ValuePx2.get("1.0","end-1c"),  xPx_Out_2, x2_2, x2Px_2], [txtbox_ValueX3.get("1.0","end-1c"), txtbox_ValuePx3.get("1.0","end-1c"),  xPx_Out_3, x2_3, x2Px_3], [txtbox_ValueX4.get("1.0","end-1c"), txtbox_ValuePx4.get("1.0","end-1c"), xPx_Out_4, x2_4, x2Px_4],[" ", Px_Total, xPx_Total, " ", x2px_Total]]
+    table = [['x', 'P(x)', 'xP(x)', 'x\u00b2', 'x\u00b2P(x)'],  [txtbox_ValueX1.get("1.0","end-1c"), txtbox_ValuePx1.get("1.0","end-1c"), xpx_out_1_round, x2_1, x2Px_1_round], [txtbox_ValueX2.get("1.0","end-1c"), txtbox_ValuePx2.get("1.0","end-1c"),  xpx_out_2_round, x2_2, x2Px_2_round], [txtbox_ValueX3.get("1.0","end-1c"), txtbox_ValuePx3.get("1.0","end-1c"),  xpx_out_3_round, x2_3, x2Px_3_round], [txtbox_ValueX4.get("1.0","end-1c"), txtbox_ValuePx4.get("1.0","end-1c"), xpx_out_4_round, x2_4, x2Px_4_round],[" ", Px_Total, xPx_Total, " ", x2px_Total]]
     
     
     txtbox_Result=tk.Text(Result, height=20, width=80)
     txtbox_Result.pack()
     print = tabulate(table, headers='firstrow', tablefmt='grid')
     txtbox_Result.insert(INSERT, print)
-
-    #mean variance and std
+    txtbox_Result.configure(state='disabled', font=("courier", 12)) #Disable TextBox from Editing and Read only
+    
+    #Print Mean, variance, and std
     Lbl_Mean = tkinter.Label(Result, text=Mean_Out, font=("Time New Roman", 16)).pack()
-    Lbl_Variance = tkinter.Label(Result, text=Variance_Out, font=("Time New Roman", 16)).pack()
+    Lbl_Variance = tkinter.Label(Result, text=Variance_Round, font=("Time New Roman", 16)).pack()
     Lbl_STD = tkinter.Label(Result, text=STD_out, font=("Time New Roman", 16)).pack()
     
-    txtbox_Result.configure(state='disabled', font=("courier", 12)) #Disable TextBox from Editing and Read only
     Btn_Back = tkinter.Button(Result, text="Back", command = Result.destroy).pack()
 
 
