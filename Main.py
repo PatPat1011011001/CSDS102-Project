@@ -86,11 +86,12 @@ def Result_Gui():
     x2px_Total = '\u03A3[x\u00b2P(x)] = ', float(x2Px_1) + float(x2Px_2) + float(x2Px_3) + float(x2Px_4)
     
 
-    Mean_Out = xPx_Total, "\n"
+    Mean_Out ="Mean: ", xPx_Total
     Variance_xPxT = xPx_Out_1 + xPx_Out_2 + xPx_Out_3 + xPx_Out_4
     Variance_x2pxT =  x2Px_1 + x2Px_2 + x2Px_3 + x2Px_4
-    Variance_Out = Variance_x2pxT - (Variance_xPxT**2)
-    STD_Out = math.sqrt(int(Variance_Out))
+    Variance_Out ="Variance: ", Variance_x2pxT - (Variance_xPxT**2)
+    STD_inp = math.sqrt(float(Variance_Out))
+    STD_out = "STD: ", str(STD_inp)
 
     #Table with TIBULATE 
     table = [['x', 'P(x)', 'xP(x)', 'x\u00b2', 'x\u00b2P(x)'],  [txtbox_ValueX1.get("1.0","end-1c"), txtbox_ValuePx1.get("1.0","end-1c"), xPx_Out_1, x2_1, x2Px_1 ], [txtbox_ValueX2.get("1.0","end-1c"), txtbox_ValuePx2.get("1.0","end-1c"),  xPx_Out_2, x2_2, x2Px_2], [txtbox_ValueX3.get("1.0","end-1c"), txtbox_ValuePx3.get("1.0","end-1c"),  xPx_Out_3, x2_3, x2Px_3], [txtbox_ValueX4.get("1.0","end-1c"), txtbox_ValuePx4.get("1.0","end-1c"), xPx_Out_4, x2_4, x2Px_4],[" ", Px_Total, xPx_Total, " ", x2px_Total]]
@@ -98,13 +99,14 @@ def Result_Gui():
     
     txtbox_Result=tk.Text(Result, height=20, width=80)
     txtbox_Result.pack()
-    txtbox_Result_2=tk.Text(Result, height=10, width=50)
-    txtbox_Result_2.pack()
     print = tabulate(table, headers='firstrow', tablefmt='grid')
     txtbox_Result.insert(INSERT, print)
-    txtbox_Result_2.insert(INSERT, Mean_Out)
-    txtbox_Result_2.insert(INSERT, Variance_Out)
-    txtbox_Result_2.insert(INSERT, STD_Out)
+
+    #mean variance and std
+    Lbl_Mean = tkinter.Label(Result, text=Mean_Out, font=("Time New Roman", 16)).pack()
+    Lbl_Variance = tkinter.Label(Result, text=Variance_Out, font=("Time New Roman", 16)).pack()
+    Lbl_STD = tkinter.Label(Result, text=STD_out, font=("Time New Roman", 16)).pack()
+    
     txtbox_Result.configure(state='disabled', font=("courier", 12)) #Disable TextBox from Editing and Read only
     Btn_Back = tkinter.Button(Result, text="Back", command = Result.destroy).pack()
 
