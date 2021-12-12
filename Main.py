@@ -18,12 +18,6 @@ main.geometry('850x600')
 ds = "\u03B4"
 
 #INPUT DATA
-#Value of X Input
-ValueXInp_1 = 0
-ValueXInp_2 = 0
-ValueXInp_3 = 0
-ValueXInp_4 = 0
-ValueXInp_5 = 0
 
 #Value of P(x)
 ValuePxInp_1 = 0
@@ -34,8 +28,7 @@ ValuePxInp_5 = 0
 
 
 
-#Table with TIBULATE 
-table = [['x', 'P(x)', 'x\u00b2', 'x\u00b2*P(x)'],  [ds, 'Jane', 25, 56], ['Jennifer', 'Doe', 28, 45]]
+
 
 #print(tabulate(table, headers='firstrow', tablefmt='grid'))
 
@@ -47,12 +40,18 @@ def Result_Gui():
     Result = tkinter.Tk()
     Result.title("CSDS102-Project2")
     Result.geometry('850x550')
+
     
+    ValueXInp_1 = txtbox_ValueX1.get()
+
+    #Table with TIBULATE 
+    table = [['x', 'P(x)', 'x\u00b2', 'x\u00b2*P(x)'],  [ValueXInp_1, txtbox_ValuePx1, 25, 56], [txtbox_ValueX2, txtbox_ValuePx2, 28, 45], [txtbox_ValueX3, txtbox_ValuePx3, 28, 45], [txtbox_ValueX4, txtbox_ValuePx4, 28, 45], [txtbox_ValueX5, txtbox_ValuePx5, 28, 45]]
+
     txtbox_Result=tk.Text(Result, height=20, width=50)
     txtbox_Result.pack()
     print = tabulate(table, headers='firstrow', tablefmt='grid')
     txtbox_Result.insert(INSERT, print)
-    txtbox_Result.configure(state='disabled', font=("courier", 24)) #Disable TextBox from Editing and Read only
+    txtbox_Result.configure(state='disabled', font=("courier", 16)) #Disable TextBox from Editing and Read only
     Btn_Back = tkinter.Button(Result, text="Back", command = Result.destroy).pack()
 
 
@@ -62,11 +61,17 @@ Title_Main = tkinter.Label(main, text="Calculate of Mean, Variance, and Standard
 
 #input Value X and Title
 Title_Main = tkinter.Label(main, text="X", font=("Time New Roman", 16)).place(x=190, y=50)
-txtbox_ValueX1=tk.Text(main, height=2, width=10).place(x=150, y=100)
-txtbox_ValueX2=tk.Text(main, height=2, width=10).place(x=150, y=200)
-txtbox_ValueX3=tk.Text(main, height=2, width=10).place(x=150, y=300)
-txtbox_ValueX4=tk.Text(main, height=2, width=10).place(x=150, y=400)
-txtbox_ValueX5=tk.Text(main, height=2, width=10).place(x=150, y=500)
+txtbox_ValueX1=tk.Entry(main, width=10).place(x=150, y=100)
+txtbox_ValueX2=tk.Entry(main, width=10).place(x=150, y=200)
+txtbox_ValueX3=tk.Entry(main, width=10).place(x=150, y=300)
+txtbox_ValueX4=tk.Entry(main, width=10).place(x=150, y=400)
+txtbox_ValueX5=tk.Entry(main, width=10).place(x=150, y=500)
+
+    #Value of X Input
+ValueXInp_2 = 0
+ValueXInp_3 = 0
+ValueXInp_4 = 0
+ValueXInp_5 = 0
 
 #Input Value of P(x) and Title
 Title_Main = tkinter.Label(main, text="P(x)", font=("Time New Roman", 16)).place(x=470, y=50)
