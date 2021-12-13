@@ -13,9 +13,6 @@ main = tkinter.Tk()
 main.title("CSDS102-Project")
 main.geometry('650x600')
 
-#String and Data Type
-ds = "\u03B4"
-
 #FRAME
 frame = Frame(main)
 frame.pack()
@@ -29,6 +26,7 @@ Rightframe.pack(side=RIGHT)
 Bottomframe = Frame(main)
 Bottomframe.pack(side=BOTTOM)
 
+#TITLE
 Title_Main = tkinter.Label(frame, text="Calculate of Mean, Variance, and Standard Deviation", font=("Time New Roman", 16))
 Title_Main.pack(side=TOP)
 
@@ -93,26 +91,30 @@ def Result_Gui():
     x2Px_3_round = round(x2Px_3, 2)
     x2Px_4_round = round(x2Px_4, 2)
     
+    
 
     Px_Total = float(txtbox_ValuePx1.get("1.0","end-1c")) + float(txtbox_ValuePx2.get("1.0","end-1c")) + float(txtbox_ValuePx3.get("1.0","end-1c")) + float(txtbox_ValuePx4.get("1.0","end-1c"))
-    xPx_Total = '\u03A3[xP(x)] = ', float(xPx_Out_1) + float(xPx_Out_2) + float(xPx_Out_3) + float(xPx_Out_4)
+    xPx_Total =  float(xPx_Out_1) + float(xPx_Out_2) + float(xPx_Out_3) + float(xPx_Out_4)
     x2px_Total = '\u03A3[x\u00b2P(x)] = ', float(x2Px_1) + float(x2Px_2) + float(x2Px_3) + float(x2Px_4)
     
 
-    Mean_Out ="Mean: ", xPx_Total
+    Mean_Inp = xPx_Total
+    Mean_Out = "Mean: \u03A3[xP(x)] = " + str(Mean_Inp)
     Variance_xPxT = xPx_Out_1 + xPx_Out_2 + xPx_Out_3 + xPx_Out_4
     Variance_x2pxT =  x2Px_1 + x2Px_2 + x2Px_3 + x2Px_4
-    Variance_Out = Variance_x2pxT - (Variance_xPxT**2)
-    Variance_Round = round(Variance_Out, 2)
-    STD_inp = np.sqrt(Variance_Out)
-    STD_round = round(STD_inp)
-    STD_out = "STD: ", str(STD_round)
+    Variance_inp = Variance_x2pxT - Variance_xPxT**2
+    Variance_Round = round(Variance_inp, 2)
+    Variance_out = "Variance: \u03A3[x\u00b2P(x)] - \u03A3[xP(x)]\u00b2 = " + str(Variance_Round)
+
+    STD_inp = np.sqrt(Variance_inp)
+    STD_round = round(STD_inp, 2)
+    STD_out = "STD: " + str(STD_round)
 
     #Table with TIBULATE 
     table = [['x', 'P(x)', 'xP(x)', 'x\u00b2', 'x\u00b2P(x)'],  [txtbox_ValueX1.get("1.0","end-1c"), txtbox_ValuePx1.get("1.0","end-1c"), xpx_out_1_round, x2_1, x2Px_1_round], [txtbox_ValueX2.get("1.0","end-1c"), txtbox_ValuePx2.get("1.0","end-1c"),  xpx_out_2_round, x2_2, x2Px_2_round], [txtbox_ValueX3.get("1.0","end-1c"), txtbox_ValuePx3.get("1.0","end-1c"),  xpx_out_3_round, x2_3, x2Px_3_round], [txtbox_ValueX4.get("1.0","end-1c"), txtbox_ValuePx4.get("1.0","end-1c"), xpx_out_4_round, x2_4, x2Px_4_round],[" ", Px_Total, xPx_Total, " ", x2px_Total]]
     
     
-    txtbox_Result=tk.Text(Result, height=20, width=80)
+    txtbox_Result=tk.Text(Result, height=15, width=70)
     txtbox_Result.pack()
     print = tabulate(table, headers='firstrow', tablefmt='grid')
     txtbox_Result.insert(INSERT, print)
@@ -120,7 +122,7 @@ def Result_Gui():
     
     #Print Mean, variance, and std
     Lbl_Mean = tkinter.Label(Result, text=Mean_Out, font=("Time New Roman", 16)).pack()
-    Lbl_Variance = tkinter.Label(Result, text=Variance_Round, font=("Time New Roman", 16)).pack()
+    Lbl_Variance = tkinter.Label(Result, text=Variance_out, font=("Time New Roman", 16)).pack()
     Lbl_STD = tkinter.Label(Result, text=STD_out, font=("Time New Roman", 16)).pack()
     
     Btn_Back = tkinter.Button(Result, text="Back", command = Result.destroy).pack()
