@@ -30,7 +30,7 @@ Bottomframe.pack(side=BOTTOM)
 Title_Main = tkinter.Label(frame, text="Calculate of Mean, Variance, and Standard Deviation", font=("Time New Roman", 16))
 Title_Main.pack(side=TOP)
 
-#input Value X and Title
+#input Value X
 Xtitle = tkinter.Label(Leftframe, text="X", font=("Time New Roman", 16))
 Xtitle.pack(side=TOP, pady=15, padx=25)
 txtbox_ValueX1=tk.Text(Leftframe, width=10, height=1)
@@ -95,8 +95,8 @@ def Result_Gui():
 
     Px_Total = float(txtbox_ValuePx1.get("1.0","end-1c")) + float(txtbox_ValuePx2.get("1.0","end-1c")) + float(txtbox_ValuePx3.get("1.0","end-1c")) + float(txtbox_ValuePx4.get("1.0","end-1c"))
     xPx_Total =  float(xPx_Out_1) + float(xPx_Out_2) + float(xPx_Out_3) + float(xPx_Out_4)
-    x2px_Total = '\u03A3[x\u00b2P(x)] = ', float(x2Px_1) + float(x2Px_2) + float(x2Px_3) + float(x2Px_4)
-    
+    x2px_Total = float(x2Px_1) + float(x2Px_2) + float(x2Px_3) + float(x2Px_4)
+    x2px_Total_print ='\u03A3[x\u00b2P(x)] = ' + str(x2px_Total)
 
     Mean_Inp = xPx_Total
     Mean_Out = "Mean: \u03A3[xP(x)] = " + str(Mean_Inp)
@@ -111,8 +111,7 @@ def Result_Gui():
     STD_out = "STD: " + str(STD_round)
 
     #Table with TIBULATE 
-    table = [['x', 'P(x)', 'xP(x)', 'x\u00b2', 'x\u00b2P(x)'],  [txtbox_ValueX1.get("1.0","end-1c"), txtbox_ValuePx1.get("1.0","end-1c"), xpx_out_1_round, x2_1, x2Px_1_round], [txtbox_ValueX2.get("1.0","end-1c"), txtbox_ValuePx2.get("1.0","end-1c"),  xpx_out_2_round, x2_2, x2Px_2_round], [txtbox_ValueX3.get("1.0","end-1c"), txtbox_ValuePx3.get("1.0","end-1c"),  xpx_out_3_round, x2_3, x2Px_3_round], [txtbox_ValueX4.get("1.0","end-1c"), txtbox_ValuePx4.get("1.0","end-1c"), xpx_out_4_round, x2_4, x2Px_4_round],[" ", Px_Total, xPx_Total, " ", x2px_Total]]
-    
+    table = [['x', 'P(x)', 'xP(x)', 'x\u00b2', 'x\u00b2P(x)'],  [txtbox_ValueX1.get("1.0","end-1c"), txtbox_ValuePx1.get("1.0","end-1c"), xpx_out_1_round, x2_1, x2Px_1_round], [txtbox_ValueX2.get("1.0","end-1c"), txtbox_ValuePx2.get("1.0","end-1c"),  xpx_out_2_round, x2_2, x2Px_2_round], [txtbox_ValueX3.get("1.0","end-1c"), txtbox_ValuePx3.get("1.0","end-1c"),  xpx_out_3_round, x2_3, x2Px_3_round], [txtbox_ValueX4.get("1.0","end-1c"), txtbox_ValuePx4.get("1.0","end-1c"), xpx_out_4_round, x2_4, x2Px_4_round],[" ", Px_Total, xPx_Total, " ", x2px_Total_print]]
     
     txtbox_Result=tk.Text(Result, height=15, width=70)
     txtbox_Result.pack()
@@ -125,6 +124,7 @@ def Result_Gui():
     Lbl_Variance = tkinter.Label(Result, text=Variance_out, font=("Time New Roman", 16)).pack()
     Lbl_STD = tkinter.Label(Result, text=STD_out, font=("Time New Roman", 16)).pack()
     
+    #button
     Btn_Back = tkinter.Button(Result, text="Back", command = Result.destroy).pack()
 
 
